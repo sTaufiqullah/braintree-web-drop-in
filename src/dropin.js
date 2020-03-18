@@ -8,7 +8,6 @@ var DropinError = require('./lib/dropin-error');
 var DropinModel = require('./dropin-model');
 var EventEmitter = require('@braintree/event-emitter');
 var assets = require('@braintree/asset-loader');
-var fs = require('fs');
 var MainView = require('./views/main-view');
 var paymentMethodsViewID = require('./views/payment-methods-view').ID;
 var paymentOptionsViewID = require('./views/payment-options-view').ID;
@@ -22,8 +21,8 @@ var DataCollector = require('./lib/data-collector');
 var ThreeDSecure = require('./lib/three-d-secure');
 var wrapPrototype = require('@braintree/wrap-promise').wrapPrototype;
 
-var mainHTML = fs.readFileSync(__dirname + '/html/main.html', 'utf8');
-var svgHTML = fs.readFileSync(__dirname + '/html/svgs.html', 'utf8');
+import mainHTML from './html/main.html';
+import svgHTML from './html/svgs.html';
 
 var ASSETS_URL = 'https://assets.braintreegateway.com';
 
@@ -734,7 +733,7 @@ Dropin.prototype._injectStylesheet = function () {
 
   if (document.getElementById(constants.STYLESHEET_ID)) { return; }
 
-  stylesheetUrl = ASSETS_URL + '/web/dropin/' + VERSION + '/css/dropin@DOT_MIN.css';
+  stylesheetUrl = ASSETS_URL + '/web/dropin/' + VERSION + '/css/dropin.css';
 
   assets.loadStylesheet({
     href: stylesheetUrl,
